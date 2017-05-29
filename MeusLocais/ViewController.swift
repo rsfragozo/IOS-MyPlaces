@@ -1,25 +1,65 @@
-//
-//  ViewController.swift
-//  MeusLocais
-//
-//  Created by vinigodoy on 24/11/15.
-//  Copyright © 2015 pucpr. All rights reserved.
-//
-
 import UIKit
+import MapKit
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+    
+    @IBOutlet weak var mapView: MKMapView!
+    let locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        mapView.delegate = self
+    }
+    
+    @IBAction func btnOndeEstouClick(_ sender: AnyObject) {
+        if CLLocationManager.authorizationStatus() != .authorizedWhenInUse {
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            mapView.showsUserLocation = true
+            manager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let local = locations.last!
+        let regiao = MKCoordinateRegion(center: local.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        mapView.setRegion(regiao, animated: true)
+        manager.stopUpdatingLocation()
+    }
+    
+    func adicionarLocal(_ local: Local) {
+        mapView.addAnnotation(local)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let dest = segue.destination as! AdicionarLocalViewController
+        dest.vcMapa = self
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let id = "marcador"
+        
+        if let local = annotation as? Local {
+            var view: MKPinAnnotationView
+            if let deqView = mapView.dequeueReusableAnnotationView(withIdentifier: id)
+                as? MKPinAnnotationView {
+                    deqView.annotation = local
+                    view = deqView
+            } else {
+                view = MKPinAnnotationView(annotation: local, reuseIdentifier: id)
+                view.canShowCallout = true
+            }
+            
+            view.pinTintColor = local.cor()
+            return view
+        }
+        return nil
     }
-
-
 }
-

@@ -12,6 +12,10 @@
 		F0B82F841C046C7E0018F953 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0B82F821C046C7E0018F953 /* Main.storyboard */; };
 		F0B82F861C046C7E0018F953 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B82F851C046C7E0018F953 /* Assets.xcassets */; };
 		F0B82F891C046C7E0018F953 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0B82F871C046C7E0018F953 /* LaunchScreen.storyboard */; };
+		F0B82F911C046CF30018F953 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0B82F901C046CF30018F953 /* MapKit.framework */; };
+		F0B82F941C0490D40018F953 /* TipoLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B82F931C0490D40018F953 /* TipoLocal.swift */; };
+		F0B82F961C0492D70018F953 /* Local.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B82F951C0492D70018F953 /* Local.swift */; };
+		F0B82F981C0498770018F953 /* AdicionarLocalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B82F971C0498770018F953 /* AdicionarLocalViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		F0B82F851C046C7E0018F953 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F0B82F881C046C7E0018F953 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F0B82F8A1C046C7E0018F953 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F0B82F901C046CF30018F953 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		F0B82F931C0490D40018F953 /* TipoLocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipoLocal.swift; sourceTree = "<group>"; };
+		F0B82F951C0492D70018F953 /* Local.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Local.swift; sourceTree = "<group>"; };
+		F0B82F971C0498770018F953 /* AdicionarLocalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdicionarLocalViewController.swift; path = ../AdicionarLocalViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0B82F911C046CF30018F953 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +47,7 @@
 		F0B82F721C046C7E0018F953 = {
 			isa = PBXGroup;
 			children = (
+				F0B82F901C046CF30018F953 /* MapKit.framework */,
 				F0B82F7D1C046C7E0018F953 /* MeusLocais */,
 				F0B82F7C1C046C7E0018F953 /* Products */,
 			);
@@ -54,14 +64,42 @@
 		F0B82F7D1C046C7E0018F953 /* MeusLocais */ = {
 			isa = PBXGroup;
 			children = (
+				F0B82F921C04908A0018F953 /* model */,
+				F0B82F991C0498AC0018F953 /* controller */,
+				F0B82F9A1C04991F0018F953 /* view */,
+				F0B82F8A1C046C7E0018F953 /* Info.plist */,
 				F0B82F7E1C046C7E0018F953 /* AppDelegate.swift */,
+			);
+			path = MeusLocais;
+			sourceTree = "<group>";
+		};
+		F0B82F921C04908A0018F953 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				F0B82F931C0490D40018F953 /* TipoLocal.swift */,
+				F0B82F951C0492D70018F953 /* Local.swift */,
+			);
+			name = model;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		F0B82F991C0498AC0018F953 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				F0B82F971C0498770018F953 /* AdicionarLocalViewController.swift */,
 				F0B82F801C046C7E0018F953 /* ViewController.swift */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		F0B82F9A1C04991F0018F953 /* view */ = {
+			isa = PBXGroup;
+			children = (
 				F0B82F821C046C7E0018F953 /* Main.storyboard */,
 				F0B82F851C046C7E0018F953 /* Assets.xcassets */,
 				F0B82F871C046C7E0018F953 /* LaunchScreen.storyboard */,
-				F0B82F8A1C046C7E0018F953 /* Info.plist */,
 			);
-			path = MeusLocais;
+			name = view;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,6 +134,12 @@
 				TargetAttributes = {
 					F0B82F7A1C046C7E0018F953 = {
 						CreatedOnToolsVersion = 7.1.1;
+						LastSwiftMigration = 0830;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -135,8 +179,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0B82F941C0490D40018F953 /* TipoLocal.swift in Sources */,
+				F0B82F961C0492D70018F953 /* Local.swift in Sources */,
 				F0B82F811C046C7E0018F953 /* ViewController.swift in Sources */,
 				F0B82F7F1C046C7E0018F953 /* AppDelegate.swift in Sources */,
+				F0B82F981C0498770018F953 /* AdicionarLocalViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +300,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.pucpr.MeusLocais;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -264,6 +313,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.pucpr.MeusLocais;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -286,6 +337,7 @@
 				F0B82F8F1C046C7E0018F953 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
